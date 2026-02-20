@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkas Blood - Agencia de Viajes</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Flotante Mejorado -->
+<header class="header" id="header">
+    <nav class="nav-container">
+        <div class="logo">
+            <a href="#home">
+                <img src="assets/imagenes/logo.png" alt="Inkas Blood" class="logo-img">
+                <!-- Fallback si no carga la imagen -->
+                <span class="logo-text">INKAS BLOOD</span>
+            </a>
+        </div>
+        
+        <div class="nav-menu">
+            <a href="#home" class="nav-link active">Inicio</a>
+            <a href="#about" class="nav-link">Sobre Nosotros</a>
+            <a href="#tours" class="nav-link">Tours</a>
+            <a href="#faq" class="nav-link">Preguntas</a>
+            <a href="#contact" class="nav-link">Contacto</a>
+        </div>
+
+        <!-- Botón de reserva rápida en desktop -->
+        <div class="nav-cta">
+            <a href="#contact" class="btn-header">Reservar</a>
+        </div>
+
+        <button class="menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+</header>
+
+    <!-- Hero Section - Imagen Grande -->
+    <section id="home" class="hero">
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600" alt="Machu Picchu">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Descubre <span class="gold-text">Perú</span></h1>
+            <p class="hero-subtitle">Experiencias auténticas en la tierra de los Incas</p>
+            <a href="#tours" class="btn-gold">Explorar Tours <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Descubre más</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+   <!-- About Section - Simple con estadísticas -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <span class="section-subtitle gold-text">Sobre Nosotros</span>
+                <h2 class="section-title">Conectamos viajeros con el <span class="gold-text">alma de Perú</span></h2>
+                <p class="about-text">Con más de 15 años de experiencia, compartimos la magia de nuestra tierra con viajeros de todo el mundo. Cada tour es una experiencia única diseñada para mostrarte el Perú auténtico.</p>
+                
+                <div class="stats-container">
+    <div class="stat-item">
+        <span class="stat-number" data-target="15">0+</span>
+        <span class="stat-label">Años</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" data-target="10000">0+</span>
+        <span class="stat-label">Viajeros</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" data-target="50">0+</span>
+        <span class="stat-label">Guías</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number" data-target="100">0%</span>
+        <span class="stat-label">Satisfacción</span>
+    </div>
+</div>
+            </div>
+            <div class="about-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSQpidJ7Y3jVT8iSrXbidEGZ2i_noL6GRhGg&s" alt="Cultura Peruana">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Tours Section - Tarjetas con Modales -->
+    <section id="tours" class="tours">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle gold-text">Nuestros Tours</span>
+                <h2 class="section-title">Experiencias <span class="gold-text">únicas</span></h2>
+            </div>
+
+            <div class="tours-grid">
+                <!-- Tour 1 - Machu Picchu -->
+                <div class="tour-card" data-tour="1">
+                    <div class="tour-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS73f3skPF0xvcTMDpxcnkTsB931lHOvxsbNw&s" alt="Machu Picchu">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Machu Picchu</h3>
+                        <p class="tour-location"><i class="fas fa-map-marker-alt gold-text"></i> Cusco</p>
+                        <div class="tour-meta">
+                            <span><i class="fas fa-clock gold-text"></i> 5 días</span>
+                            <span><i class="fas fa-users gold-text"></i> Máx 12</span>
+                        </div>
+                        <p class="tour-excerpt">Explora la ciudadela inca más famosa del mundo...</p>
+                        <div class="tour-footer">
+                            <span class="tour-price">$1,299</span>
+                            <button class="btn-outline view-tour" data-tour="1">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 2 - Amazonía -->
+                <div class="tour-card" data-tour="2">
+                    <div class="tour-image">
+                        <img src="https://media.istockphoto.com/id/1454581656/es/foto/vista-a%C3%A9rea-de-la-selva-amaz%C3%B3nica-en-per%C3%BA.jpg?s=612x612&w=0&k=20&c=g7cMB0eCcO9wLd4sFHEWJaGC9N_DtLlCwI0XKGEinZs=" alt="Amazonía">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Amazonía Peruana</h3>
+                        <p class="tour-location"><i class="fas fa-map-marker-alt gold-text"></i> Puerto Maldonado</p>
+                        <div class="tour-meta">
+                            <span><i class="fas fa-clock gold-text"></i> 4 días</span>
+                            <span><i class="fas fa-users gold-text"></i> Máx 8</span>
+                        </div>
+                        <p class="tour-excerpt">Sumérgete en la selva más biodiversa del planeta...</p>
+                        <div class="tour-footer">
+                            <span class="tour-price">$899</span>
+                            <button class="btn-outline view-tour" data-tour="2">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 3 - Valle Sagrado -->
+                <div class="tour-card" data-tour="3">
+                    <div class="tour-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd_mUwyJFCCuXrjleVcFRZfL0fI-QErj0Fcg&s" alt="Valle Sagrado">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Valle Sagrado</h3>
+                        <p class="tour-location"><i class="fas fa-map-marker-alt gold-text"></i> Cusco</p>
+                        <div class="tour-meta">
+                            <span><i class="fas fa-clock gold-text"></i> 3 días</span>
+                            <span><i class="fas fa-users gold-text"></i> Máx 15</span>
+                        </div>
+                        <p class="tour-excerpt">Descubre mercados tradicionales y sitios arqueológicos...</p>
+                        <div class="tour-footer">
+                            <span class="tour-price">$699</span>
+                            <button class="btn-outline view-tour" data-tour="3">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 4 - Lago Titicaca -->
+                <div class="tour-card" data-tour="4">
+                    <div class="tour-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkAPKV67zvlY0xFqEgidJ4t6b8oX0Lb7fhVA&s" alt="Lago Titicaca">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Lago Titicaca</h3>
+                        <p class="tour-location"><i class="fas fa-map-marker-alt gold-text"></i> Puno</p>
+                        <div class="tour-meta">
+                            <span><i class="fas fa-clock gold-text"></i> 3 días</span>
+                            <span><i class="fas fa-users gold-text"></i> Máx 10</span>
+                        </div>
+                        <p class="tour-excerpt">El lago navegable más alto del mundo te espera...</p>
+                        <div class="tour-footer">
+                            <span class="tour-price">$599</span>
+                            <button class="btn-outline view-tour" data-tour="4">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 5 - Montaña de Colores -->
+                <div class="tour-card" data-tour="5">
+                    <div class="tour-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFV-jX1ljpHuB1EVTCJdzSBB0JikaGvYMRMg&s" alt="Montaña de Colores">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Montaña de Colores</h3>
+                        <p class="tour-location"><i class="fas fa-map-marker-alt gold-text"></i> Cusco</p>
+                        <div class="tour-meta">
+                            <span><i class="fas fa-clock gold-text"></i> 1 día</span>
+                            <span><i class="fas fa-users gold-text"></i> Máx 12</span>
+                        </div>
+                        <p class="tour-excerpt">Camina hasta la impresionante montaña arcoíris...</p>
+                        <div class="tour-footer">
+                            <span class="tour-price">$199</span>
+                            <button class="btn-outline view-tour" data-tour="5">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 6 - Líneas de Nazca -->
+                <div class="tour-card" data-tour="6">
+                    <div class="tour-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgjgvCklpVRZwcQCO3vXgWKkSvuWYWVAUMlg&s" alt="Líneas de Nazca">
+                    </div>
+                    <div class="tour-content">
+                        <h3>Líneas de Nazca</h3>
+                        <p class="tour-location"><i class="fas fa-map-marker-alt gold-text"></i> Ica</p>
+                        <div class="tour-meta">
+                            <span><i class="fas fa-clock gold-text"></i> 2 días</span>
+                            <span><i class="fas fa-users gold-text"></i> Máx 10</span>
+                        </div>
+                        <p class="tour-excerpt">Sobrevuela los misteriosos geoglifos precolombinos...</p>
+                        <div class="tour-footer">
+                            <span class="tour-price">$449</span>
+                            <button class="btn-outline view-tour" data-tour="6">Ver detalles</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Tours -->
+    <div class="modal" id="tourModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-content" id="modalContent">
+                <!-- El contenido se carga dinámicamente con JS -->
+            </div>
+        </div>
+    </div>
+
+<!-- ============================================
+     SECCIÓN DE PREGUNTAS FRECUENTES (FAQ)
+     ============================================ -->
+<section id="faq" class="faq">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle gold-text">Información útil</span>
+            <h2 class="section-title">Preguntas <span class="gold-text">frecuentes</span></h2>
+            <p class="section-description">Resolvemos tus dudas para que tu viaje sea perfecto</p>
+        </div>
+
+        <div class="faq-grid">
+            <!-- Pregunta 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Cómo puedo reservar un tour?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Puedes reservar directamente desde nuestra web haciendo clic en "Comprar ahora" en el tour de tu interés, o contactarnos vía WhatsApp o formulario de contacto para tours personalizados.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Qué métodos de pago aceptan?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Aceptamos tarjetas de crédito/débito (Visa, Mastercard, American Express), PayPal, y transferencias bancarias. Próximamente también Yape y PLIN.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Puedo cancelar mi reserva?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, ofrecemos cancelación gratuita hasta 7 días antes de la fecha del tour. Pasado ese plazo, se aplican cargos según nuestra política de cancelación.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Los tours incluyen seguro de viaje?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Todos nuestros tours incluyen seguro básico de viaje. Para mayor cobertura, recomendamos contratar un seguro adicional.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Qué debo llevar para el tour?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Recomendamos llevar ropa cómoda, bloqueador solar, repelente, cámara fotográfica y una botella de agua. Para tours de montaña, incluir ropa abrigadora.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Los guías hablan otros idiomas?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Sí, contamos con guías profesionales bilingües (español e inglés). También podemos gestionar guías en otros idiomas con anticipación.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 7 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Hay descuentos para grupos?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Ofrecemos descuentos especiales para grupos de 4 personas o más. Contáctanos para una cotización personalizada.</p>
+                </div>
+            </div>
+
+            <!-- Pregunta 8 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>¿Cómo llegar a Cusco desde el aeropuerto?</h3>
+                    <button class="faq-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="faq-answer">
+                    <p>Podemos coordinarte un traslado privado desde el aeropuerto hasta tu hotel. El servicio tiene un costo adicional y debe reservarse con 48 horas de anticipación.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA adicional -->
+        <div class="faq-cta">
+            <p>¿No encuentras tu pregunta?</p>
+            <a href="#contact" class="btn-gold">Contáctanos <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle gold-text">Contacto</span>
+            <h2 class="section-title">¿Listo para tu <span class="gold-text">aventura?</span></h2>
+            <p class="contact-intro">Cuéntanos qué tipo de experiencia buscas y te ayudaremos a diseñar el viaje perfecto.</p>
+        </div>
+
+        <div class="contact-buttons-grid">
+            <!-- Botón de llamada -->
+            <a href="tel:+51984123456" class="contact-button">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-label">Llama ahora</span>
+                    <span class="contact-value">+51 984 123 456</span>
+                </div>
+                <div class="contact-action">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+            <a href="tel:+1 (800) 560-0061" class="contact-button">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-label">Llama ahora</span>
+                    <span class="contact-value">1 (800) 560-0061</span>
+                </div>
+                <div class="contact-action">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- Botón de email -->
+            <a href="mailto:info@inkasblood.com?subject=Consulta%20sobre%20tours%20en%20Perú" class="contact-button">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-label">Envíanos un email</span>
+                    <span class="contact-value">info@inkasblood.com</span>
+                </div>
+                <div class="contact-action">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <!-- Botón de Google Maps (abre modal) -->
+            <button class="contact-button" id="openMapModal">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-info">
+                    <span class="contact-label">Visítanos en</span>
+                    <span class="contact-value">Cusco, Perú</span>
+                </div>
+                <div class="contact-action">
+                    <i class="fas fa-search"></i>
+                </div>
+            </button>
+        </div>
+
+        <div class="contact-cta">
+            <button class="btn-gold open-contact-modal" id="openContactModal">
+                Envíanos un mensaje <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Modal de Google Maps -->
+<div class="modal" id="mapModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container modal-map">
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+        <div class="modal-content">
+            <div class="map-header">
+                <h3 class="map-title"><i class="fas fa-map-marker-alt gold-text"></i> Nuestra ubicación</h3>
+                <p class="map-address">Plaza de Armas, Cusco - Perú</p>
+            </div>
+            <div class="map-container" id="googleMap">
+                <!-- Aquí se cargará el mapa -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3884.3057893453295!2d-71.982833924224!3d-13.516666686788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916dd67387b3bddb%3A0x9c5d499c1dbcc6c8!2sPlaza%20de%20Armas%20del%20Cuzco!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+            <div class="map-footer">
+                <div class="map-actions">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Plaza+de+Armas+Cusco+Peru" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="btn-outline">
+                        <i class="fas fa-external-link-alt"></i> Abrir en Google Maps
+                    </a>
+                    <button class="btn-gold" id="getDirections">
+                        <i class="fas fa-directions"></i> Cómo llegar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Contacto Mejorado -->
+<div class="modal" id="contactModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container modal-medium">
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">¡Comienza tu aventura!</h3>
+                <p class="modal-subtitle">Cuéntanos qué buscas y te ayudaremos a crear el viaje perfecto</p>
+            </div>
+            
+            <form class="modal-form" id="contactForm">
+                <!-- Información Personal - 2 columnas -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-user gold-text"></i> Nombre completo *</label>
+                        <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope gold-text"></i> Email *</label>
+                        <input type="email" id="email" placeholder="Ej: juan@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono"><i class="fas fa-phone-alt gold-text"></i> Teléfono / WhatsApp</label>
+                        <input type="tel" id="telefono" placeholder="Ej: +51 984 123 456">
+                    </div>
+                    <div class="form-group">
+                        <label for="pais"><i class="fas fa-globe-americas gold-text"></i> País de origen</label>
+                        <input type="text" id="pais" placeholder="Ej: Argentina, USA, etc.">
+                    </div>
+                </div>
+
+                <!-- Tour de interés -->
+                <div class="form-group">
+                    <label for="tourInteres"><i class="fas fa-map-marked-alt gold-text"></i> Tour de interés *</label>
+                    <select id="tourInteres" required>
+                        <option value="" disabled selected>Selecciona un tour</option>
+                        <option value="Machu Picchu">Machu Picchu - 5 días / $1,299</option>
+                        <option value="Amazonía">Amazonía Peruana - 4 días / $899</option>
+                        <option value="Valle Sagrado">Valle Sagrado - 3 días / $699</option>
+                        <option value="Lago Titicaca">Lago Titicaca - 3 días / $599</option>
+                        <option value="Montaña de Colores">Montaña de Colores - 1 día / $199</option>
+                        <option value="Líneas de Nazca">Líneas de Nazca - 2 días / $449</option>
+                        <option value="Personalizado">✨ Tour personalizado</option>
+                    </select>
+                </div>
+
+                <!-- Fechas - 2 columnas -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fechaViaje"><i class="fas fa-calendar-alt gold-text"></i> Fecha estimada de viaje</label>
+                        <input type="month" id="fechaViaje">
+                    </div>
+                    <div class="form-group">
+                        <label for="viajeros"><i class="fas fa-users gold-text"></i> Número de viajeros</label>
+                        <select id="viajeros">
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                            <option value="6+">6 o más personas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Presupuesto -->
+                <div class="form-group">
+                    <label for="presupuesto"><i class="fas fa-dollar-sign gold-text"></i> Presupuesto aproximado por persona</label>
+                    <select id="presupuesto">
+                        <option value="$500-1000">$500 - $1,000 USD</option>
+                        <option value="$1000-2000">$1,000 - $2,000 USD</option>
+                        <option value="$2000-3000">$2,000 - $3,000 USD</option>
+                        <option value="$3000+">Más de $3,000 USD</option>
+                        <option value="flexible">Flexible / No definido</option>
+                    </select>
+                </div>
+
+                <!-- Preferencias adicionales -->
+                <div class="form-group">
+                    <label for="preferencias"><i class="fas fa-heart gold-text"></i> Preferencias especiales</label>
+                    <textarea id="preferencias" rows="3" placeholder="Cuéntanos más sobre lo que buscas: alojamiento, actividades, restricciones alimentarias, etc."></textarea>
+                </div>
+
+                <!-- Checkbox de consentimiento -->
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        <span>Acepto que mis datos sean utilizados para contactarme sobre mi consulta *</span>
+                    </label>
+                </div>
+
+                <!-- Campos ocultos para tracking -->
+                <input type="hidden" id="tourSeleccionado" name="tourSeleccionado" value="">
+                <input type="hidden" id="fechaEnvio" name="fechaEnvio" value="">
+
+                <button type="submit" class="btn-gold btn-submit">
+                            <span class="btn-text">Enviar mensaje</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <div class="modal-footer">
+                <p>¿Prefieres contactarnos directamente?</p>
+                <div class="modal-contact-options">
+                    <a href="tel:+51984123456" class="modal-contact-link">
+                        <i class="fas fa-phone-alt gold-text"></i> +51 984 123 456
+                    </a>
+                    <!-- WhatsApp con mensaje dinámico - AHORA CON LINK POR DEFECTO -->
+                    <a href="https://wa.me/51984123456?text=Hola%2C%20estoy%20interesado%20en%20los%20tours%20de%20Inkas%20Blood.%20¿Podrían%20darme%20más%20información%3F" 
+                    class="modal-contact-link" 
+                    id="whatsappLink" 
+                    target="_blank">
+                        <i class="fab fa-whatsapp gold-text"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================
+     BOTÓN FLOTANTE DE WHATSAPP
+     ============================================ -->
+<a href="https://wa.me/51984123456?text=Hola%2C%20estoy%20interesado%20en%20los%20tours%20de%20Inkas%20Blood.%20¿Podrían%20darme%20más%20información%3F" 
+   class="whatsapp-float" 
+   target="_blank"
+   aria-label="Contactar por WhatsApp">
+   <i class="fab fa-whatsapp"></i>
+   <span class="whatsapp-tooltip">¿Necesitas ayuda?</span>
+</a>
+
+    <!-- Footer Mejorado y Elegante -->
+<footer class="footer">
+    <div class="container">
+        <!-- Main Footer Content -->
+        <div class="footer-grid">
+            <!-- Columna 1: Logo y descripción -->
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <img src="assets/imagenes/logo.png" alt="Inkas Blood" class="footer-logo-img">
+                    <!-- Fallback si no carga la imagen -->
+                    <span class="footer-logo-text">INKAS BLOOD</span>
+                    <p class="footer-description">
+                        Descubre la magia de Perú con experiencias auténticas diseñadas por locales apasionados.
+                    </p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna 2: Enlaces rápidos -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Explorar</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                    <li><a href="#tours">Tours</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Tours populares -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Tours Populares</h4>
+                <ul class="footer-links">
+                    <li><a href="#tours">Machu Picchu</a></li>
+                    <li><a href="#tours">Amazonía Peruana</a></li>
+                    <li><a href="#tours">Valle Sagrado</a></li>
+                    <li><a href="#tours">Lago Titicaca</a></li>
+                    <li><a href="#tours">Montaña de Colores</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Contacto -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Contacto</h4>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Plaza de Armas 123, Cusco - Perú</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+51984123456">+51 984 123 456</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@inkasblood.com">info@inkasblood.com</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/51984123456">+51 984 123 456</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Badges de confianza -->
+        <div class="footer-badges">
+            <div class="badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>Pago Seguro</span>
+            </div>
+            <div class="badge">
+                <i class="fas fa-trophy"></i>
+                <span>15+ Años</span>
+            </div>
+            <div class="badge">
+                <i class="fas fa-users"></i>
+                <span>10k+ Viajeros</span>
+            </div>
+            <div class="badge">
+                <i class="fas fa-leaf"></i>
+                <span>Turismo Sostenible</span>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Inkas Blood. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
