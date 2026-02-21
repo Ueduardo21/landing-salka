@@ -453,21 +453,26 @@ body {
 }
 
 /* ============================================
-   IMAGEN - ESQUINAS RECTAS Y SIN DECORACIONES
+   IMAGEN - VERSIÓN MEJORADA (SIN DEFORMACIÓN)
    ============================================ */
 .about-image {
-    /* border-radius: 0;  Esquinas completamente rectas */
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* Relación de aspecto 4:3 (ajústala según tu imagen) */
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    position: relative;
-    height: 100%;
-    min-height: 450px;
+    background-color: var(--gris-claro); /* Color de fondo mientras carga */
 }
 
 .about-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Mantiene la proporción y cubre el área */
+    object-position: center; /* Centra la imagen */
     display: block;
     transition: transform 0.6s ease;
 }
@@ -476,12 +481,12 @@ body {
     transform: scale(1.05);
 }
 
-/* ELIMINADOS todos los efectos decorativos:
-   - Marco dorado (::before)
-   - Overlay dorado (::after)
-   - Efectos 3D
-   - Bordes redondeados
-*/
+/* Opcional: Si quieres una relación de aspecto específica para diferentes tamaños */
+@media (max-width: 768px) {
+    .about-image {
+        padding-bottom: 66.67%; /* 3:2 en móviles */
+    }
+}
 
 /* ============================================
    ESTADÍSTICAS - CORREGIDAS (SIN DESBORDE)
@@ -761,7 +766,7 @@ body {
 }
 
 /* CTA de FAQ */
-.faq-cta {
+.faq-cta-modern {
     text-align: center;
     margin-top: 4rem;
     padding: 3rem;
@@ -1070,6 +1075,60 @@ body {
     gap: 0.8rem;
 }
 
+/* ============================================
+   CTA INTEGRADO EN MODAL
+   ============================================ */
+.modal-cta-integrado {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(212,175,55,0.2);
+    text-align: center;
+}
+
+.modal-cta-text {
+    color: var(--gris);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.modal-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.modal-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--gris-claro);
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--verde);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.modal-cta-link:hover {
+    background: var(--dorado);
+    color: var(--verde);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+.modal-cta-link i {
+    font-size: 1rem;
+}
+
+.modal-cta-link:hover i {
+    color: var(--verde);
+}
+
 /* Modal de Mapa */
 .map-header {
     text-align: center;
@@ -1217,7 +1276,7 @@ body {
 }
 
 /* ============================================
-   BOTÓN FLOTANTE DE WHATSAPP
+   BOTÓN FLOTANTE DE WHATSAPP - VERSIÓN CORREGIDA
    ============================================ */
 .whatsapp-float {
     position: fixed;
@@ -1225,31 +1284,38 @@ body {
     right: 30px;
     width: 65px;
     height: 65px;
-    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    color: var(--blanco);
+    background: linear-gradient(135deg, var(--dorado) 0%, var(--dorado-oscuro) 100%);
+    color: var(--verde);
     border-radius: 50%;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+    box-shadow: var(--shadow-gold);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 100;
-    text-decoration: none;
-    animation: whatsappPulse 2s infinite;
-    border: 3px solid transparent;
-    background-clip: padding-box;
+    border: 3px solid var(--blanco);
+    animation: whatsappGoldPulse 2s infinite;
+    overflow: hidden; /* IMPORTANTE: Evita desbordes */
+}
+
+.whatsapp-float i {
+    color: var(--verde);
+    font-size: 2.2rem; /* TAMAÑO CONSISTENTE */
+    line-height: 1; /* ALTURA DE LÍNEA NORMAL */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
 }
 
 .whatsapp-float:hover {
     transform: scale(1.15) translateY(-5px);
-    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.whatsapp-float i {
-    transition: transform 0.3s ease;
+    background: linear-gradient(135deg, var(--dorado-suave) 0%, var(--dorado) 100%);
+    box-shadow: var(--shadow-gold-hover);
+    border-color: var(--dorado);
 }
 
 .whatsapp-float:hover i {
@@ -1294,6 +1360,19 @@ body {
     right: 85px;
 }
 
+/* Efecto de pulso dorado */
+@keyframes whatsappGoldPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
 /* Notificación de mensaje */
 .whatsapp-notification {
     position: absolute;
@@ -1301,8 +1380,8 @@ body {
     right: -5px;
     width: 22px;
     height: 22px;
-    background: var(--dorado);
-    color: var(--verde);
+    background: var(--verde);
+    color: var(--dorado);
     border-radius: 50%;
     font-size: 0.7rem;
     font-weight: 700;
@@ -1312,6 +1391,16 @@ body {
     border: 2px solid var(--blanco);
     animation: notificationPulse 1.5s infinite;
 }
+
+@keyframes notificationPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
 /* ============================================
    VARIANTES DEL BOTÓN WHATSAPP
    ============================================ */
@@ -1319,7 +1408,8 @@ body {
 /* Opción 1: Con imagen de perfil */
 .whatsapp-float.with-avatar {
     background: var(--blanco);
-    border: 3px solid #25D366;
+    border: 3px solid var(--dorado);
+    padding: 3px;
 }
 
 .whatsapp-float.with-avatar img {
@@ -1334,22 +1424,34 @@ body {
     display: none;
 }
 
+.whatsapp-float.with-avatar:hover {
+    border-color: var(--dorado-suave);
+}
+
 /* Opción 2: Con contador de mensajes */
 .whatsapp-float.with-counter .whatsapp-notification {
     display: flex;
 }
 
-/* Opción 3: Estilo minimalista */
+/* Opción 3: Estilo minimalista con dorado */
 .whatsapp-float.minimal {
     background: transparent;
     box-shadow: none;
-    border: 2px solid #25D366;
-    color: #25D366;
+    border: 2px solid var(--dorado);
+    color: var(--dorado);
+}
+
+.whatsapp-float.minimal i {
+    color: var(--dorado);
 }
 
 .whatsapp-float.minimal:hover {
-    background: #25D366;
-    color: var(--blanco);
+    background: var(--dorado);
+    border-color: var(--dorado);
+}
+
+.whatsapp-float.minimal:hover i {
+    color: var(--verde);
 }
 
 /* ============================================

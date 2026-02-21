@@ -364,9 +364,11 @@ function initFaqAccordion() {
 const tourModal = document.getElementById('tourModal');
 const contactModal = document.getElementById('contactModal');
 const mapModal = document.getElementById('mapModal');
+const faqModal = document.getElementById('faqModal');
 const modalContent = document.getElementById('modalContent');
 const openContactBtn = document.getElementById('openContactModal');
 const openMapBtn = document.getElementById('openMapModal');
+const openFaqBtn = document.getElementById('openFaqModal');
 const getDirectionsBtn = document.getElementById('getDirections');
 
 // Tour data
@@ -491,6 +493,144 @@ function updateWhatsAppLink(tour = null) {
     }
     
     whatsappLink.href = `https://wa.me/51984123456?text=${encodeURIComponent(mensaje)}`;
+}
+
+// ============================================
+// MANEJADOR DE CÓDIGO DE PAÍS PARA TELÉFONO
+// ============================================
+function initPhoneCountryHandler() {
+    const paisSelect = document.getElementById('pais');
+    const telefonoInput = document.getElementById('telefono');
+    
+    if (!paisSelect || !telefonoInput) {
+        console.log('Elementos de país o teléfono no encontrados');
+        return;
+    }
+    
+    let telefonoSinCodigo = '';
+    let codigoActual = '';
+
+    function extraerNumeroTelefono(telefonoCompleto, codigoPais) {
+        if (!codigoPais) return telefonoCompleto;
+        let numero = telefonoCompleto.replace(codigoPais, '').trim();
+        numero = numero.replace(/[\s-()]/g, '');
+        return numero;
+    }
+
+    function actualizarTelefonoConCodigo() {
+        const selectedOption = paisSelect.options[paisSelect.selectedIndex];
+        const nuevoCodigo = selectedOption ? selectedOption.getAttribute('data-codigo') : '';
+        
+        if (nuevoCodigo) {
+            if (telefonoInput.value && codigoActual) {
+                telefonoSinCodigo = extraerNumeroTelefono(telefonoInput.value, codigoActual);
+            } else if (telefonoInput.value) {
+                telefonoSinCodigo = telefonoInput.value.replace(/[\s-]/g, '');
+            }
+            
+            if (telefonoSinCodigo) {
+                telefonoInput.value = nuevoCodigo + ' ' + telefonoSinCodigo;
+            } else {
+                telefonoInput.value = nuevoCodigo + ' ';
+            }
+            
+            codigoActual = nuevoCodigo;
+            telefonoInput.setAttribute('data-automatico', 'true');
+        } else {
+            if (telefonoSinCodigo) {
+                telefonoInput.value = telefonoSinCodigo;
+            }
+            codigoActual = '';
+            telefonoInput.removeAttribute('data-automatico');
+        }
+    }
+
+    function formatearTelefonoDuranteEscritura(e) {
+        if (!codigoActual) return;
+        
+        const valorActual = telefonoInput.value;
+        
+        if (!valorActual.startsWith(codigoActual)) {
+            const numerosIngresados = valorActual.replace(/[\s-]/g, '');
+            telefonoSinCodigo = numerosIngresados;
+            telefonoInput.value = codigoActual + ' ' + numerosIngresados;
+            
+            const nuevaPosicion = codigoActual.length + 1 + numerosIngresados.length;
+            e.target.setSelectionRange(nuevaPosicion, nuevaPosicion);
+        } else {
+            telefonoSinCodigo = extraerNumeroTelefono(valorActual, codigoActual);
+        }
+    }
+
+    function prevenirBorradoCodigo(e) {
+        if (!codigoActual) return;
+        
+        const cursorPos = e.target.selectionStart;
+        const codigoLength = codigoActual.length;
+        
+        if ((e.key === 'Backspace' || e.key === 'Delete') && cursorPos <= codigoLength + 1) {
+            const seleccionInicio = e.target.selectionStart;
+            const seleccionFin = e.target.selectionEnd;
+            
+            if (seleccionFin - seleccionInicio > 0 && seleccionInicio <= codigoLength + 1) {
+                e.preventDefault();
+                e.target.setSelectionRange(codigoLength + 2, codigoLength + 2);
+                return;
+            }
+            
+            if (e.key === 'Backspace' && cursorPos <= codigoLength + 1) {
+                e.preventDefault();
+                e.target.setSelectionRange(codigoLength + 2, codigoLength + 2);
+                return;
+            }
+            
+            if (e.key === 'Delete' && cursorPos < codigoLength + 1) {
+                e.preventDefault();
+                e.target.setSelectionRange(codigoLength + 2, codigoLength + 2);
+                return;
+            }
+        }
+    }
+
+    function manejarPegadoTelefono(e) {
+        if (!codigoActual) return;
+        
+        const textoPegado = (e.clipboardData || window.clipboardData).getData('text');
+        const soloNumeros = textoPegado.replace(/\D/g, '');
+        
+        if (soloNumeros) {
+            e.preventDefault();
+            telefonoSinCodigo = soloNumeros;
+            telefonoInput.value = codigoActual + ' ' + soloNumeros;
+        }
+    }
+
+    // Event listeners
+    paisSelect.addEventListener('change', actualizarTelefonoConCodigo);
+    telefonoInput.addEventListener('input', formatearTelefonoDuranteEscritura);
+    telefonoInput.addEventListener('keydown', prevenirBorradoCodigo);
+    telefonoInput.addEventListener('paste', manejarPegadoTelefono);
+    
+    telefonoInput.addEventListener('blur', function() {
+        if (telefonoInput.value && codigoActual) {
+            const numero = extraerNumeroTelefono(telefonoInput.value, codigoActual);
+            if (numero) {
+                telefonoInput.value = codigoActual + ' ' + numero;
+                telefonoSinCodigo = numero;
+            }
+        }
+    });
+
+    telefonoInput.addEventListener('focus', function(e) {
+        if (codigoActual && telefonoInput.value.startsWith(codigoActual)) {
+            e.target.setSelectionRange(codigoActual.length + 2, codigoActual.length + 2);
+        }
+    });
+
+    // Inicializar si ya hay un país seleccionado
+    if (paisSelect.value) {
+        actualizarTelefonoConCodigo();
+    }
 }
 
 // ============================================
@@ -627,6 +767,40 @@ document.querySelectorAll('.view-tour').forEach(button => {
     });
 });
 
+// ============================================
+// FAQ MODAL FUNCTIONALITY
+// ============================================
+const faqForm = document.getElementById('faqForm');
+
+// Abrir modal FAQ
+if (openFaqBtn) {
+    openFaqBtn.addEventListener('click', () => {
+        faqModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Envío del formulario FAQ
+if (faqForm) {
+    faqForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            nombre: document.getElementById('faq-nombre')?.value,
+            email: document.getElementById('faq-email')?.value,
+            mensaje: document.getElementById('faq-mensaje')?.value
+        };
+        
+        console.log('Consulta FAQ:', formData);
+        
+        alert('¡Gracias por tu pregunta! Te responderemos a la brevedad.');
+        
+        faqForm.reset();
+        faqModal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}
+
 // Open contact modal
 if (openContactBtn) {
     openContactBtn.addEventListener('click', () => {
@@ -638,6 +812,16 @@ if (openContactBtn) {
         const form = document.getElementById('contactForm');
         if (form) {
             form.reset();
+            
+            // Reiniciar el manejador de teléfono después de reset
+            setTimeout(() => {
+                const paisSelect = document.getElementById('pais');
+                const telefonoInput = document.getElementById('telefono');
+                if (paisSelect && telefonoInput) {
+                    paisSelect.value = '';
+                    telefonoInput.value = '';
+                }
+            }, 100);
         }
         
         const hiddenInput = document.getElementById('tourSeleccionado');
@@ -660,13 +844,17 @@ if (openContactBtn) {
     });
 }
 
-// Close modals
+// ============================================
+// CLOSE MODALS
+// ============================================
 document.querySelectorAll('.modal-close, .modal-overlay').forEach(element => {
     element.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
-            tourModal.classList.remove('active');
-            contactModal.classList.remove('active');
-            mapModal.classList.remove('active');
+            if (tourModal) tourModal.classList.remove('active');
+            if (contactModal) contactModal.classList.remove('active');
+            if (mapModal) mapModal.classList.remove('active');
+            if (faqModal) faqModal.classList.remove('active');
+            
             document.body.style.overflow = '';
         }
     });
@@ -675,50 +863,169 @@ document.querySelectorAll('.modal-close, .modal-overlay').forEach(element => {
 // Close modal with ESC key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        tourModal.classList.remove('active');
-        contactModal.classList.remove('active');
-        mapModal.classList.remove('active');
+        if (tourModal) tourModal.classList.remove('active');
+        if (contactModal) contactModal.classList.remove('active');
+        if (mapModal) mapModal.classList.remove('active');
+        if (faqModal) faqModal.classList.remove('active');
+        
         document.body.style.overflow = '';
     }
 });
 
-// Contact form submission
+// ============================================
+// NUEVAS FUNCIONES PARA ENVÍO POR EMAIL Y WHATSAPP
+// ============================================
+
+// Función para enviar por email (mailto)
+function sendByEmail(formData) {
+    // Determinar si hay datos para enviar
+    const hasData = formData.nombre || formData.email || formData.tourInteres;
+    
+    let subject = '';
+    let body = '';
+    
+    if (!hasData) {
+        // Mensaje genérico si no hay datos
+        subject = encodeURIComponent('Consulta - Inkas Blood');
+        body = encodeURIComponent('Hola, me gustaría recibir información sobre los tours de Inkas Blood.');
+    } else {
+        // Mensaje con los datos del formulario
+        subject = encodeURIComponent(`Nueva consulta de ${formData.nombre || 'cliente'} - Inkas Blood`);
+        
+        body = `*NUEVA CONSULTA DE VIAJE*%0D%0A%0D%0A`;
+        body += `👤 *NOMBRE:* ${formData.nombre || 'No especificado'}%0D%0A`;
+        body += `📧 *EMAIL:* ${formData.email || 'No especificado'}%0D%0A`;
+        body += `📞 *TELÉFONO:* ${formData.telefono || 'No especificado'}%0D%0A`;
+        body += `🌍 *PAÍS:* ${formData.pais || 'No especificado'}%0D%0A%0D%0A`;
+        body += `🎯 *TOUR DE INTERÉS:* ${formData.tourInteres || 'No especificado'}%0D%0A`;
+        body += `📅 *FECHA ESTIMADA:* ${formData.fechaViaje || 'No especificada'}%0D%0A`;
+        body += `👥 *NÚMERO DE VIAJEROS:* ${formData.viajeros || 'No especificado'}%0D%0A`;
+        body += `💰 *PRESUPUESTO:* ${formData.presupuesto || 'No especificado'}%0D%0A%0D%0A`;
+        body += `📝 *PREFERENCIAS:*%0D%0A${formData.preferencias ? formData.preferencias.replace(/\n/g, '%0D%0A') : 'No especificadas'}%0D%0A%0D%0A`;
+        
+        if (formData.tourSeleccionado) {
+            body += `🆔 *TOUR SELECCIONADO:* ${formData.tourSeleccionado}%0D%0A%0D%0A`;
+        }
+        
+        body += `📅 *FECHA DE ENVÍO:* ${new Date().toLocaleString()}%0D%0A`;
+    }
+    
+    // Abrir cliente de correo
+    window.location.href = `mailto:info@inkasblood.com?subject=${subject}&body=${body}`;
+}
+
+// Función para enviar por WhatsApp
+function sendByWhatsApp(formData) {
+    // Verificar si hay datos
+    const hasData = formData.nombre || formData.email || formData.tourInteres;
+    
+    let mensaje = '';
+    
+    if (!hasData) {
+        // Mensaje genérico si no hay datos
+        mensaje = 'Hola, estoy interesado en los tours de Inkas Blood. ¿Podrían darme más información?';
+    } else {
+        // Mensaje con los datos del formulario
+        mensaje = `*NUEVA CONSULTA DE VIAJE*%0A%0A`;
+        mensaje += `👤 *Nombre:* ${formData.nombre || 'No especificado'}%0A`;
+        mensaje += `📧 *Email:* ${formData.email || 'No especificado'}%0A`;
+        mensaje += `📞 *Teléfono:* ${formData.telefono || 'No especificado'}%0A`;
+        mensaje += `🌍 *País:* ${formData.pais || 'No especificado'}%0A%0A`;
+        mensaje += `🎯 *Tour de interés:* ${formData.tourInteres || 'No especificado'}%0A`;
+        mensaje += `📅 *Fecha estimada:* ${formData.fechaViaje || 'No especificada'}%0A`;
+        mensaje += `👥 *Viajeros:* ${formData.viajeros || 'No especificado'}%0A`;
+        mensaje += `💰 *Presupuesto:* ${formData.presupuesto || 'No especificado'}%0A%0A`;
+        mensaje += `📝 *Preferencias:*%0A${formData.preferencias ? formData.preferencias.replace(/\n/g, '%0A') : 'No especificadas'}`;
+    }
+    
+    // Abrir WhatsApp
+    window.open(`https://wa.me/51984123456?text=${mensaje}`, '_blank');
+}
+
+// ============================================
+// CONTACT FORM SUBMISSION - ACTUALIZADO (REEMPLAZA EL ANTERIOR)
+// ============================================
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    // Eliminar el event listener anterior si existía
+    // (al reemplazar el código, este será el único)
+    
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
+        // Recoger datos del formulario
         const formData = {
-            nombre: document.getElementById('nombre')?.value,
-            email: document.getElementById('email')?.value,
-            telefono: document.getElementById('telefono')?.value,
-            pais: document.getElementById('pais')?.value,
-            tourInteres: document.getElementById('tourInteres')?.value,
-            fechaViaje: document.getElementById('fechaViaje')?.value,
-            viajeros: document.getElementById('viajeros')?.value,
-            presupuesto: document.getElementById('presupuesto')?.value,
-            preferencias: document.getElementById('preferencias')?.value,
-            tourSeleccionado: document.getElementById('tourSeleccionado')?.value,
+            nombre: document.getElementById('nombre')?.value || '',
+            email: document.getElementById('email')?.value || '',
+            telefono: document.getElementById('telefono')?.value || '',
+            pais: document.getElementById('pais')?.value || '',
+            tourInteres: document.getElementById('tourInteres')?.value || '',
+            fechaViaje: document.getElementById('fechaViaje')?.value || '',
+            viajeros: document.getElementById('viajeros')?.value || '',
+            presupuesto: document.getElementById('presupuesto')?.value || '',
+            preferencias: document.getElementById('preferencias')?.value || '',
+            tourSeleccionado: document.getElementById('tourSeleccionado')?.value || '',
             fechaEnvio: document.getElementById('fechaEnvio')?.value || new Date().toISOString()
         };
         
         console.log('Datos del formulario:', formData);
         
-        let mensaje = '¡Gracias por contactarnos! Te responderemos a la brevedad.';
-        if (formData.tourSeleccionado) {
-            mensaje = `¡Gracias por tu interés en ${formData.tourSeleccionado}! Te contactaremos pronto con información personalizada.`;
+        // Verificar si hay datos
+        const hasData = formData.nombre || formData.email || formData.tourInteres;
+        
+        // Mostrar opciones de envío
+        const enviarOpcion = confirm(
+            '¿Cómo quieres enviar tu consulta?\n\n' +
+            '✅ Aceptar = Enviar por correo electrónico\n' +
+            '❌ Cancelar = Enviar por WhatsApp'
+        );
+        
+        if (enviarOpcion) {
+            // Enviar por email
+            sendByEmail(formData);
+            
+            // Mostrar mensaje
+            setTimeout(() => {
+                if (hasData) {
+                    alert('📧 Se abrirá tu cliente de correo con todos los datos. ¡Gracias por contactarnos!');
+                } else {
+                    alert('📧 Se abrirá tu cliente de correo con un mensaje genérico. Para una mejor atención, completa los campos del formulario.');
+                }
+            }, 100);
+        } else {
+            // Enviar por WhatsApp
+            sendByWhatsApp(formData);
+            
+            // Mostrar mensaje
+            setTimeout(() => {
+                if (hasData) {
+                    alert('📱 Se abrirá WhatsApp con todos los datos de tu consulta. ¡Gracias por contactarnos!');
+                } else {
+                    alert('📱 Se abrirá WhatsApp con un mensaje genérico. Para una mejor atención, completa los campos del formulario.');
+                }
+            }, 100);
         }
         
-        alert(mensaje);
-        
-        contactForm.reset();
+        // Cerrar modal y resetear formulario
         contactModal.classList.remove('active');
         document.body.style.overflow = '';
+        contactForm.reset();
         
+        // Limpiar campos ocultos
         const hiddenInput = document.getElementById('tourSeleccionado');
         if (hiddenInput) {
             hiddenInput.value = '';
         }
+        
+        // Reiniciar el manejador de teléfono
+        setTimeout(() => {
+            const paisSelect = document.getElementById('pais');
+            const telefonoInput = document.getElementById('telefono');
+            if (paisSelect && telefonoInput) {
+                paisSelect.value = '';
+                telefonoInput.value = '';
+            }
+        }, 100);
     });
 }
 
@@ -763,16 +1070,6 @@ if (openMapBtn) {
         document.body.style.overflow = 'hidden';
     });
 }
-
-// Cerrar modal de mapa
-document.querySelectorAll('#mapModal .modal-close, #mapModal .modal-overlay').forEach(element => {
-    element.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('modal-close') || e.target.closest('.modal-close')) {
-            mapModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-});
 
 // Botón "Cómo llegar"
 if (getDirectionsBtn) {
@@ -841,4 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Inicializar FAQ accordion
     initFaqAccordion();
+    
+    // Inicializar manejador de código de país
+    initPhoneCountryHandler();
 });

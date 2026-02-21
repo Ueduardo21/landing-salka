@@ -355,13 +355,73 @@
             </div>
         </div>
 
-        <!-- CTA adicional -->
-        <div class="faq-cta">
-            <p>¿No encuentras tu pregunta?</p>
-            <a href="#contact" class="btn-gold">Contáctanos <i class="fas fa-arrow-right"></i></a>
+     <!-- En tu sección FAQ, reemplaza el CTA actual con esto: -->
+        <div class="faq-cta-modern">
+            <p class="faq-cta-text">¿No encuentras tu pregunta?</p>
+            <button class="btn-gold open-faq-modal" id="openFaqModal">
+                Escríbenos <i class="fas fa-edit"></i>
+            </button>
+        </div>
+</section>
+<!-- ============================================
+     MODAL DE CONSULTA RÁPIDA (FAQ) CON CTA INTEGRADO
+     ============================================ -->
+<div class="modal" id="faqModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container modal-small">
+        <button class="modal-close"><i class="fas fa-times"></i></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">¿Tienes una pregunta?</h3>
+                <p class="modal-subtitle">Déjanos tus datos y te responderemos a la brevedad</p>
+            </div>
+            
+            <form class="modal-form" id="faqForm">
+                <div class="form-group">
+                    <label for="faq-nombre"><i class="fas fa-user gold-text"></i> Nombre completo *</label>
+                    <input type="text" id="faq-nombre" placeholder="Ej: Juan Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="faq-email"><i class="fas fa-envelope gold-text"></i> Correo electrónico *</label>
+                    <input type="email" id="faq-email" placeholder="Ej: juan@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="faq-mensaje"><i class="fas fa-comment gold-text"></i> Tu pregunta *</label>
+                    <textarea id="faq-mensaje" rows="4" placeholder="Escribe aquí tu pregunta..." required></textarea>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" required>
+                        <span>Acepto recibir información sobre mi consulta *</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-gold btn-submit">
+                    <span>Enviar pregunta</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <!-- CTA INTEGRADO DENTRO DEL MODAL (debajo del formulario) -->
+            <div class="modal-cta-integrado">
+                <p class="modal-cta-text">¿Prefieres contactarnos directamente?</p>
+                <div class="modal-cta-buttons">
+                    <a href="tel:+51984123456" class="modal-cta-link">
+                        <i class="fas fa-phone-alt gold-text"></i> +51 984 123 456
+                    </a>
+                    <a href="https://wa.me/51984123456?text=Hola%2C%20tengo%20una%20consulta%20sobre%20los%20tours%20en%20Per%C3%BA.%20¿Podrían%20ayudarme%3F" 
+                       class="modal-cta-link" 
+                       target="_blank">
+                        <i class="fab fa-whatsapp gold-text"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+</div>
 
 <!-- Contact Section -->
 <section id="contact" class="contact">
@@ -502,11 +562,42 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="telefono"><i class="fas fa-phone-alt gold-text"></i> Teléfono / WhatsApp</label>
-                        <input type="tel" id="telefono" placeholder="Ej: +51 984 123 456">
+                        <input type="tel" id="telefono" placeholder="Ej: 984 123 456">
                     </div>
                     <div class="form-group">
                         <label for="pais"><i class="fas fa-globe-americas gold-text"></i> País de origen</label>
-                        <input type="text" id="pais" placeholder="Ej: Argentina, USA, etc.">
+                        <select id="pais" class="form-control">
+                            <option value="">Selecciona tu país</option>
+                            <option value="PE" data-codigo="+51">Perú</option>
+                            <option value="AR" data-codigo="+54">Argentina</option>
+                            <option value="BO" data-codigo="+591">Bolivia</option>
+                            <option value="BR" data-codigo="+55">Brasil</option>
+                            <option value="CL" data-codigo="+56">Chile</option>
+                            <option value="CO" data-codigo="+57">Colombia</option>
+                            <option value="CR" data-codigo="+506">Costa Rica</option>
+                            <option value="CU" data-codigo="+53">Cuba</option>
+                            <option value="EC" data-codigo="+593">Ecuador</option>
+                            <option value="SV" data-codigo="+503">El Salvador</option>
+                            <option value="GT" data-codigo="+502">Guatemala</option>
+                            <option value="HN" data-codigo="+504">Honduras</option>
+                            <option value="MX" data-codigo="+52">México</option>
+                            <option value="NI" data-codigo="+505">Nicaragua</option>
+                            <option value="PA" data-codigo="+507">Panamá</option>
+                            <option value="PY" data-codigo="+595">Paraguay</option>
+                            <option value="UY" data-codigo="+598">Uruguay</option>
+                            <option value="VE" data-codigo="+58">Venezuela</option>
+                            <option value="ES" data-codigo="+34">España</option>
+                            <option value="US" data-codigo="+1">Estados Unidos</option>
+                            <option value="CA" data-codigo="+1">Canadá</option>
+                            <option value="GB" data-codigo="+44">Reino Unido</option>
+                            <option value="FR" data-codigo="+33">Francia</option>
+                            <option value="DE" data-codigo="+49">Alemania</option>
+                            <option value="IT" data-codigo="+39">Italia</option>
+                            <option value="PT" data-codigo="+351">Portugal</option>
+                            <option value="AU" data-codigo="+61">Australia</option>
+                            <option value="JP" data-codigo="+81">Japón</option>
+                            <option value="CN" data-codigo="+86">China</option>
+                        </select>
                     </div>
                 </div>
 
@@ -525,11 +616,11 @@
                     </select>
                 </div>
 
-                <!-- Fechas - 2 columnas -->
+               <!-- Fechas - 2 columnas -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="fechaViaje"><i class="fas fa-calendar-alt gold-text"></i> Fecha estimada de viaje</label>
-                        <input type="month" id="fechaViaje">
+                        <input type="date" id="fechaViaje" min="2024-01-01">
                     </div>
                     <div class="form-group">
                         <label for="viajeros"><i class="fas fa-users gold-text"></i> Número de viajeros</label>
@@ -575,7 +666,7 @@
                 <input type="hidden" id="fechaEnvio" name="fechaEnvio" value="">
 
                 <button type="submit" class="btn-gold btn-submit">
-                            <span class="btn-text">Enviar mensaje</span>
+                    <span class="btn-text">Enviar mensaje</span>
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
@@ -586,7 +677,6 @@
                     <a href="tel:+51984123456" class="modal-contact-link">
                         <i class="fas fa-phone-alt gold-text"></i> +51 984 123 456
                     </a>
-                    <!-- WhatsApp con mensaje dinámico - AHORA CON LINK POR DEFECTO -->
                     <a href="https://wa.me/51984123456?text=Hola%2C%20estoy%20interesado%20en%20los%20tours%20de%20Inkas%20Blood.%20¿Podrían%20darme%20más%20información%3F" 
                     class="modal-contact-link" 
                     id="whatsappLink" 
@@ -627,16 +717,16 @@
                     </p>
                 </div>
                 <div class="footer-social">
-                    <a href="#" class="social-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/altuarabespokejourneys/" class="social-link" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Facebook">
+                    <a href="https://www.facebook.com/altuarabespokejourneys/" class="social-link" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
+                    <a href="https://www.tiktok.com/@altuaraluxury" class="social-link" aria-label="Tiktok">
+                        <i class="fab fa-tiktok"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@AltuaraBespokeJourneys" class="social-link" aria-label="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
