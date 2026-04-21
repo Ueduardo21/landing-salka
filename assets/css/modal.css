@@ -1,0 +1,409 @@
+/* ============================================
+   MODAL CSS - COMPLETO Y FUNCIONAL
+   ============================================ */
+
+/* Modal base - oculto por defecto */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal activo - visible */
+.modal.active {
+    display: flex;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: #ffffff;
+    border-radius: 24px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header */
+.modal-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #00e5b5, #00c4a0);
+    border-radius: 24px 24px 0 0;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 1.2rem;
+    font-weight: 600;
+    flex: 1;
+}
+
+/* Indicador de pasos */
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 0;
+}
+
+.step.active:not(:last-child)::after,
+.step.completed:not(:last-child)::after {
+    background: #ffffff;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.step.active .step-number {
+    background: #ffffff;
+    color: #00e5b5;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.step.completed .step-number {
+    background: #ffffff;
+    color: #00e5b5;
+}
+
+.step.completed .step-number::after {
+    content: '✓';
+    font-size: 0.8rem;
+}
+
+.step-label {
+    font-size: 0.7rem;
+    margin-top: 0.4rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+
+.step.active .step-label {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Botón cerrar */
+.close-modal {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
+
+/* Cuerpo del modal */
+.modal-body {
+    padding: 1.5rem;
+    min-height: 380px;
+}
+
+/* Footer del modal */
+.modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Pasos del formulario */
+.form-step {
+    display: none;
+    animation: fadeInStep 0.3s ease;
+}
+
+.form-step.active {
+    display: block;
+}
+
+@keyframes fadeInStep {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Formulario */
+.modal-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.modal-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 0.85rem;
+}
+
+.modal-form label .required {
+    color: #00e5b5;
+    margin-left: 3px;
+}
+
+.modal-form input,
+.modal-form textarea,
+.modal-form select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus,
+.modal-form select:focus {
+    outline: none;
+    border-color: #00e5b5;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 229, 181, 0.1);
+}
+
+/* Extras */
+.extras-group {
+    margin-bottom: 1.5rem;
+}
+
+.extras-group h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.extras-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.extras-option:hover {
+    border-color: #00e5b5;
+    background: #ffffff;
+}
+
+.extras-option input {
+    width: auto;
+    margin-right: 0.8rem;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.extras-option label {
+    flex: 1;
+    margin: 0;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.extras-price {
+    color: #00e5b5;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Resumen */
+.resume-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.resume-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.resume-item:last-child {
+    border-bottom: none;
+}
+
+.resume-total {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #00e5b5;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 2px solid #e5e7eb;
+}
+
+/* Mensajes */
+.modal-message-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.modal-message-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+/* Botones */
+.btn-green {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(135deg, #00e5b5, #00c4a0);
+    border: none;
+    border-radius: 50px;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 229, 181, 0.3);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.7rem;
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 50px;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .step-label {
+        display: none;
+    }
+    .step:not(:last-child)::after {
+        top: 16px;
+    }
+    .modal-header {
+        padding: 1rem;
+    }
+    .modal-body {
+        padding: 1rem;
+        min-height: 420px;
+    }
+    .modal-footer {
+        padding: 0.75rem 1rem 1rem;
+        flex-wrap: wrap;
+    }
+    .extras-option {
+        flex-wrap: wrap;
+    }
+    .extras-price {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-left: 1.8rem;
+    }
+    .btn-green, .btn-secondary {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}

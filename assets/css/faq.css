@@ -1,0 +1,341 @@
+/* ============================================
+   FAQ SECTION - BLANCO + VERDE CELESTE
+   ============================================ */
+
+.faq-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+}
+
+.faq-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   ENCABEZADO
+   ============================================ */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    color: #00e5b5;
+    font-weight: 600;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.green-text {
+    color: #00e5b5;
+}
+
+.section-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   CATEGORÍAS
+   ============================================ */
+.faq-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    background: #ffffff;
+    border: 2px solid rgba(0, 229, 181, 0.2);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-btn i {
+    font-size: 1rem;
+    color: #00e5b5;
+}
+
+.category-btn:hover {
+    border-color: #00e5b5;
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: linear-gradient(135deg, #00e5b5, #00c4a0);
+    border-color: #00e5b5;
+    color: #1a1a1a;
+}
+
+.category-btn.active i {
+    color: #1a1a1a;
+}
+
+/* ============================================
+   CONTENIDO FAQ
+   ============================================ */
+.faq-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.faq-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   ITEMS DE PREGUNTAS (ACORDEÓN)
+   ============================================ */
+.faq-item {
+    background: #ffffff;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 229, 181, 0.1);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 229, 181, 0.3);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-question span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1a1a1a;
+}
+
+.faq-question i {
+    color: #00e5b5;
+    transition: transform 0.3s ease;
+    font-size: 1rem;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1.5rem;
+    color: #6c757d;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 800px;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* ============================================
+   QUÉ LLEVAR (WHAT TO BRING)
+   ============================================ */
+.what-to-bring h4 {
+    color: #00e5b5;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.bring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.bring-category strong {
+    display: block;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.bring-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bring-category ul li {
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+    color: #6c757d;
+}
+
+/* ============================================
+   POLÍTICA DE CANCELACIÓN
+   ============================================ */
+.cancellation-policy ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+}
+
+.cancellation-policy ul li {
+    padding: 0.3rem 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.cancellation-policy .mt-2 {
+    margin-top: 1rem;
+    color: #00e5b5;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   BANNER DE AYUDA
+   ============================================ */
+.faq-help {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 229, 181, 0.05), rgba(0, 196, 160, 0.05));
+    border-radius: 20px;
+    border: 1px solid rgba(0, 229, 181, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.faq-help i {
+    font-size: 3rem;
+    color: #00e5b5;
+}
+
+.help-content {
+    flex: 1;
+}
+
+.help-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: #1a1a1a;
+}
+
+.help-content p {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 992px) {
+    .faq-categories {
+        gap: 0.8rem;
+    }
+    
+    .category-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    .bring-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-section {
+        padding: 3rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .faq-categories {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .category-btn {
+        justify-content: center;
+    }
+    
+    .faq-question {
+        padding: 1rem;
+    }
+    
+    .faq-question span {
+        font-size: 0.9rem;
+    }
+    
+    .bring-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .faq-help {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .faq-help i {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .faq-question span {
+        font-size: 0.85rem;
+    }
+    
+    .faq-item.active .faq-answer {
+        padding: 0 1rem 1rem 1rem;
+    }
+    
+    .faq-answer {
+        font-size: 0.85rem;
+    }
+}
