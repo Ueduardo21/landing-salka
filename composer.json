@@ -1,11 +1,5 @@
 {
-    "name": "cusco-tours/landing-page",
-    "description": "Landing page para Cusco Tours Barato",
-    "type": "project",
     "require": {
-        "phpmailer/phpmailer": "^6.9"
-    },
-    "config": {
-        "optimize-autoloader": true
+        "phpmailer/phpmailer": "^7.0"
     }
 }
